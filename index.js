@@ -1,6 +1,6 @@
 const express = require('express')
 const bodyParser = require('body-parser')
-const { Usergame } = require('./models')
+const { Usergame , Userbiodata } = require('./models')
 
 const app = express()
 const jsonParser = bodyParser.json()
@@ -11,22 +11,28 @@ app.get('/', (req, res) => {
 })
 
 // CREATE
-// POST USERGAME
 app.post('/register', jsonParser, async (req, res) => {
 
     try {
-        const data = await Usergame.create({
+        // POST USERGAME
+        const dataUser = await Usergame.create({
             username: req.body.username
+        })        
+        // POST USERBIODATA
+        const biodata = await Userbiodata.create({
+            fullname: req.body.fullname,
+            address: req.body.address,
+            age: req.body.age,
+            hobby: req.body.hobby,
+            UsergameId: dataUser.id
         })
-    
-        res.status(201).send(data)
+
+        res.status(201).send('INSERT DATA SUCCESS')
     } catch (error) {
         res.status(409).send('USERNAME ALREADY EXIST')
     }
 
 })
-
-
 
 
 
