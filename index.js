@@ -25,14 +25,16 @@ app.get('/dashboard', (req, res) => {
     res.render('dashboard')
 })
 
-app.get('/listData', (req, res) => {
-    res.render('listData')
+app.get('/listData', async (req, res) => {
+    const listData = await fetch('http://localhost:6060/data')
+    const data = await listData.json()
+    console.log(data)
+    res.render('listData', { listData: data })
 })
 
 app.get('/detail/:id', async (req, res) => {
     const resp = await fetch(`http://localhost:6060/biodata/${req.params.id}`)
-    const data = await resp.json()   
-    
+    const data = await resp.json()    
     res.render('detail', { userDetail: data })
 })
 
@@ -77,6 +79,11 @@ app.get('/data/:username', async (req, res) => {
  
 })
 
+app.get('/data', async (req, res) => {
+    const data = await Usergame.findAll()
+    res.send(data)
+})
+
 app.get('/biodata/:id', async (req, res) => {
     const data = await Usergame.findByPk (req.params.id, {
         include: Userbiodata
@@ -96,6 +103,22 @@ app.put('/biodata/:id', jsonParser, async (req, res) => {
     data.save()
     res.status(202).send(" DATA HAS BEEN EDITED")
 })
+
+
+
+// DELETE
+
+app.delete('/data/:id', async(req,res) => {
+    try {
+      const dataUser = await Usergame.findByPk(req.params.id)
+      const biodatas = await Usergame.findByPk(req.params.id)
+      dataUser.destroy()
+      biodatas.destroy()
+      res.status(202).send('DELETED')
+    } catch (error) {
+      res.status(422).send('UNABLE TO DELETE DATA')
+    }
+  })
 
 app.listen('6060', () => {
     console.log('APP PORT:6060 IS RUNNING')

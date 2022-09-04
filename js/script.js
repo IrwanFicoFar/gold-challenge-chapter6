@@ -14,6 +14,15 @@ const dashboard = () => {
     window.location.href = `http://localhost:6060/dashboard`
 }
 
+const handleDelete = async (dataId) => {
+    let ans = confirm('SURE TO DELETE ?')
+    if (ans){
+      await fetch(`http://localhost:6060/data/${dataId}`, {
+        method: 'DELETE'
+      })
+    }
+  }
+
 const handleRegister = async () => {
     let regUsername = document.getElementById('regUsername').value
     let regFullname = document.getElementById('regFullname').value

@@ -11,14 +11,39 @@
 <body>
 <div class="container-fluid superAdmin">
     <div class="row">
-        <div class="col">
-            <div class="row cover">
+        <div class="col cover">
+            <div class="row ">
                 <div class="col form1">
                     <h2>LIST DATA USER</h2>
                     <div class="form-group">
                         <label></label>
-                        <input class="form-control" placeholder="Username" id="regUsername">
-                    </div>             
+                        <table class="table">
+                            <thead class="thead-dark">
+                              <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">USER NAME</th>
+                                <th scope="col">VIEW DETAILS</th>
+                                <th scope="col">REMOVE USER</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                                <% for( let index = 0; index < listData.length; index++ ) { %>
+                                    <tr>
+                                      <th scope="row"><%= index + 1 %> </th>
+                                      <td><%= listData[index].username %> </td>
+                                      <td><a href= <%= `/detail/${listData[index].id}` %> button type="submit" class="btn btn-success button" > DETAIL</a></button></td>
+                                      <td><button type="submit" class="btn btn-danger" onclick=handleDelete(<%= listData[index].id %>)>DELETE</button></td>
+                                    </tr>
+                                <% } %>
+                            </tbody>
+                        </table>   
+                    </div>                      
+                </div>           
+            </div>
+            <div class="row">
+                <div class="col button2">
+                    <button type="submit" class="btn btn-info button mt-2" onclick="dashboard()">GO TO DASHBOARD</button>
+                </div>
             </div>
         </div>     
     </div>
