@@ -19,6 +19,10 @@ app.get('/home', (req, res) => {
     res.render('superAdmin')
 })
 
+app.get('/dashboard', (req, res) => {
+    res.render('dashboard')
+})
+
 
 // CREATE
 app.post('/register', jsonParser, async (req, res) => {
