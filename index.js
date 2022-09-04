@@ -5,10 +5,20 @@ const { Usergame , Userbiodata } = require('./models')
 const app = express()
 const jsonParser = bodyParser.json()
 
+app.set('view engine','ejs')
+app.use('/css', express.static(__dirname+'/css'))
+app.use('/js', express.static(__dirname+'/js'))
+
 // FIRST API TEST
 app.get('/', (req, res) => {
     res.send('first get success')
 })
+
+// VIEWS
+app.get('/home', (req, res) => {
+    res.render('superAdmin')
+})
+
 
 // CREATE
 app.post('/register', jsonParser, async (req, res) => {
