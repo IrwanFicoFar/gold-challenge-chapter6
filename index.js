@@ -1,6 +1,7 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const { Usergame , Userbiodata } = require('./models')
+const { where } = require('sequelize/types')
 
 const app = express()
 const jsonParser = bodyParser.json()
@@ -47,6 +48,22 @@ app.post('/register', jsonParser, async (req, res) => {
     }
 
 })
+
+// // READ
+// app.get('/data/:username', async (req, res) => {
+//     const data = await Usergame.findOne({
+//         where: {
+//             username: req.params.username
+//         }
+//     }) 
+
+//     if(data != null) {
+//         res.send(data)
+//     } else {
+//         res.status(404).send("DATA NOT FOUND")
+//     }
+ 
+// })
 
 
 
