@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Dashboard</title>
+</head>
+<body>
+<div class="container-fluid superAdmin">
+    <div class="row">
+        <div class="col cover">
+            <div class="row ">
+                <div class="col form1">
+                    <h2>BIODATA</h2>
+                    <div class="form-group">
+                        <label>User Name :</label>
+                        <input class="form-control" placeholder="Username" id="Username" value=" <%= userDetail.username %>" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label>Full Name :</label>
+                        <input class="form-control" placeholder="Fullname" id="Fullname" value=" <%= userDetail.Userbiodatum.fullname %> ">
+                    </div>
+                    <div class="form-group">
+                        <label>Address :</label>
+                        <input class="form-control" placeholder="Address" id="Address" value=" <%= userDetail.Userbiodatum.address %> ">
+                    </div>
+                    <div class="form-group">
+                        <label>Age :</label>
+                        <input class="form-control" placeholder="Age" id="Age" value=" <%= userDetail.Userbiodatum.age %> ">
+                    </div>
+                    <div class="form-group">
+                        <label>Hobby :</label>
+                        <input class="form-control" placeholder="Hobby" id="Hobby" value=" <%= userDetail.Userbiodatum.hobby %> ">
+                    </div>
+                    <button type="submit" class="btn btn-primary button" onclick="handleBiodataEdit(<%= userDetail.Userbiodatum.id %>)">EDIT</button>
+                </div>    
+                <div class="col form2">
+                    <h2>GAME HISTORY</h2>
+                    <div class="form-group">
+                        <label></label>
+                        <input type="email" class="form-control" placeholder="Username" id="Username">
+                    </div>            
+                    <button type="submit" class="btn btn-primary button" onclick="hanldeHistoryEdit()">EDIT</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col button2">
+                    <button type="submit" class="btn btn-info button" onclick="dashboard()">GO TO DASHBOARD</button>
+                </div>
+            </div>
+        </div>     
+    </div>
+</div>
+
+<script src="/js/script.js"></script>
+</body>
+</html>

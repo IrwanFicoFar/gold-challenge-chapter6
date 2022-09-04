@@ -6,44 +6,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/style.css">
-    <title>superAdmin</title>
+    <title>Dashboard</title>
 </head>
 <body>
 <div class="container-fluid superAdmin">
     <div class="row">
-        <div class="col">
-            <div class="row cover">
+        <div class="col cover">
+            <div class="row ">
                 <div class="col form1">
                     <h2>REGISTER</h2>
                     <div class="form-group">
                         <label></label>
-                        <input class="form-control" placeholder="Username">
+                        <input class="form-control" placeholder="Username" id="regUsername">
                     </div>
                     <div class="form-group">
                         <label></label>
-                        <input class="form-control" placeholder="Fullname">
+                        <input class="form-control" placeholder="Fullname" id="regFullname">
                     </div>
                     <div class="form-group">
                         <label></label>
-                        <input class="form-control" placeholder="Address">
+                        <input class="form-control" placeholder="Address" id="regAddress">
                     </div>
                     <div class="form-group">
                         <label></label>
-                        <input class="form-control" placeholder="Age">
+                        <input class="form-control" placeholder="Age" id="regAge">
                     </div>
                     <div class="form-group">
                         <label></label>
-                        <input class="form-control" placeholder="Hobby">
+                        <input class="form-control" placeholder="Hobby" id="regHobby">
                     </div>
-                    <button type="submit" class="btn btn-primary button">INPUT DATA</button>
+                    <button type="submit" class="btn btn-primary button" onclick="handleRegister()">INPUT DATA</button>
                 </div>    
                 <div class="col form2">
                     <h2>FIND USER NAME</h2>
                     <div class="form-group">
                         <label></label>
-                        <input type="email" class="form-control" placeholder="Username" id="userAdmin">
+                        <input type="email" class="form-control" placeholder="Username" id="findUsername">
                     </div>            
-                    <button type="submit" class="btn btn-primary button">FIND</button>
+                    <button type="submit" class="btn btn-primary button" onclick="hanldeFindUsername()">FIND</button>
+                </div>                
+            </div>
+            <div class="row">
+                <div class="col button2">
+                    <button type="submit" class="btn btn-info button" onclick="listData()">GO TO LIST DATA</button>
                 </div>
             </div>
         </div>     
