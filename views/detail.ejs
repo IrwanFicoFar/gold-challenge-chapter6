@@ -11,9 +11,9 @@
 <body>
 <div class="container-fluid superAdmin">
     <div class="row">
-        <div class="col cover">
+        <div class="col detail-cover">
             <div class="row ">
-                <div class="col form1">
+                <div class="col detail-form">
                     <h2>BIODATA</h2>
                     <div class="form-group">
                         <label>User Name :</label>
@@ -35,16 +35,8 @@
                         <label>Hobby :</label>
                         <input class="form-control" placeholder="Hobby" id="Hobby" value=" <%= userDetail.Userbiodatum.hobby %> ">
                     </div>
-                    <button type="submit" class="btn btn-primary button" onclick="handleBiodataEdit(<%= userDetail.Userbiodatum.id %>)">EDIT</button>
+                    <button type="submit" class="btn btn-primary button" onclick="handleBiodataEdit(<%= userDetail.Userbiodatum.id %>)">SUBMIT EDIT</button>
                 </div>    
-                <div class="col form2">
-                    <h2>GAME HISTORY</h2>
-                    <div class="form-group">
-                        <label></label>
-                        <input type="email" class="form-control" placeholder="Username" id="Username">
-                    </div>            
-                    <button type="submit" class="btn btn-primary button" onclick="hanldeHistoryEdit()">EDIT</button>
-                </div>
             </div>
             <div class="row">
                 <div class="col-md-3 offset-3 button2">

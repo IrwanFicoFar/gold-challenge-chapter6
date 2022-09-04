@@ -1,6 +1,6 @@
 const express = require('express')
 const bodyParser = require('body-parser')
-const { Usergame , Userbiodata } = require('./models')
+const { Usergame , Userbiodata , UsergameHistory } = require('./models')
 const fetch = require('node-fetch')
 
 
@@ -38,6 +38,17 @@ app.get('/detail/:id', async (req, res) => {
     res.render('detail', { userDetail: data })
 })
 
+app.get('/history', async (req, res) => {
+    const history = await fetch(`http://localhost:6060/history`)
+    const data = await history.json()    
+    res.render('history', { historyDetail: data })
+})
+
+app.get('/history/:id', async (req, res) => {
+    const history = await fetch(`http://localhost:6060/data/${req.params.id}/history`)
+    const data = await history.json()    
+    res.render('history', { data: data })
+})
 
 // CREATE
 app.post('/register', jsonParser, async (req, res) => {
@@ -62,6 +73,17 @@ app.post('/register', jsonParser, async (req, res) => {
     }
 
 })
+
+app.post('/history', jsonParser, async (req, res) => {
+
+        const dataUser = await UsergameHistory.create({
+            history: req.body.history,
+            UsergameId: req.body.UsergameId
+        })        
+        res.status(201).send(dataUser)
+})
+
+
 
 // READ
 app.get('/data/:username', async (req, res) => {
@@ -92,6 +114,14 @@ app.get('/biodata/:id', async (req, res) => {
     res.send(data)
 })
 
+app.get('/data/:id/history', async (req, res) => {
+    const data = await Usergame.findByPk(req.params.id, {
+        include: UsergameHistory
+    }) 
+
+    res.send(data)
+})
+
 
 // EDIT
 app.put('/biodata/:id', jsonParser, async (req, res) => {
@@ -107,7 +137,6 @@ app.put('/biodata/:id', jsonParser, async (req, res) => {
 
 
 // DELETE
-
 app.delete('/data/:id', async(req,res) => {
     try {
       const dataUser = await Usergame.findByPk(req.params.id)
@@ -123,4 +152,8 @@ app.delete('/data/:id', async(req,res) => {
 app.listen('6060', () => {
     console.log('APP PORT:6060 IS RUNNING')
 })
+
+
+//AUTHORIZED
+
 

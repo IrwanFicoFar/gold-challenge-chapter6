@@ -20,7 +20,9 @@ const handleDelete = async (dataId) => {
       await fetch(`http://localhost:6060/data/${dataId}`, {
         method: 'DELETE'
       })
+      location.reload()
     }
+
   }
 
 const handleRegister = async () => {
@@ -49,6 +51,27 @@ const handleRegister = async () => {
     if(resp.status === 201) {
         alert('INPUT DATA SUCCESS')
         emptyRegister()
+    } else {
+        alert('INPUT DATA FAILED')
+    }
+}
+
+const handleInput  = async (UsergameId) => {
+    let input = document.getElementById('input-history').value
+    const resp = await fetch('http://localhost:6060/history', {
+        method: 'POST',
+        headers: {
+            'Content-Type':'application/json'
+        },
+        body: JSON.stringify({
+            history: input,
+            UsergameId: UsergameId
+        })
+    })
+
+    if(resp.status === 201) {
+        alert('INPUT DATA SUCCESS')
+        location.reload()
     } else {
         alert('INPUT DATA FAILED')
     }
