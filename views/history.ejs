@@ -13,7 +13,7 @@
     <div class="row">
         <div class="col detail-cover">
             <div class="row ">
-                <div class="col form1">
+                <div class="col ">
                     <h2>GAME HISTORIES OF <%= data.username.toUpperCase() %> </h2>
                     <div class="form-group">
                         <label></label>
@@ -24,7 +24,7 @@
                         <input class="form-control" placeholder="Enter Rank" id="ranks">
                     </div>
                     <button type="submit" id="btnInput" class="btn btn-primary button mb-4" onclick=handleInput(<%= data.id %>)>SUBMIT HISTORY</button>
-                    <button type="submit" id="btnEdit" class="btn btn-warning button mb-4" onclick=handleInput(<%= data.id %>)>SUBMIT EDIT</button>
+                    <button type="submit" id="btnEdit" class="btn btn-warning button mb-4" disabled>SUBMIT EDIT</button>
 
                     <label></label>                    
                     <table class="table">
@@ -42,13 +42,13 @@
                         <tbody>                  
                            
                             <% for( let index = 0; index < data.UsergameHistories.length; index++ ) { %>
-                                <tr>
+                                <tr id="<%=data.UsergameHistories[index].id%>">
                                   <th scope="row"> <%= index + 1 %> </th>
-                                  <td><%= data.UsergameHistories[index].id%> </td> 
+                                  <td></td> 
                                   <td><%= data.UsergameHistories[index].game%> </td> 
                                   <td><%= data.UsergameHistories[index].score%> </td> 
                                   <td><%= data.UsergameHistories[index].rank%> </td>                                                            
-                                  <td><button type="submit" class="btn btn-success button " onclick=handleEditH(<%=data.UsergameHistories[index].game%>)>EDIT</button></td>
+                                  <td><button type="submit" class="btn btn-success button " onclick=handleEditH(<%=data.UsergameHistories[index].id%>)>EDIT</button></td>
                                   <td><button type="submit" class="btn btn-danger" onclick=handleDeleteH(<%=data.UsergameHistories[index].id%>)>DELETE</button></td>
                                 </tr> 
                             <% } %>
@@ -60,7 +60,7 @@
             </div>
             <div class="row">
                 <div class="col-md-3 offset-3 history-button">
-                    <button type="submit" class="btn btn-info button" onclick="dashboard()">GO TO DASHBOARD</button>
+                    <button type="submit" class="btn btn-secondary button" onclick="dashboard()">GO TO DASHBOARD</button>
                 </div>
                 <div class="col-md-3 history-button">
                     <button type="submit" class="btn btn-info button" onclick="listData()">GO TO LIST DATA</button>

@@ -51,18 +51,6 @@ const handleDeleteH = async (historyId) => {
 }
 
 
-// HANDLE EDIT HISTORY
-const handleEditH = (Id ,game) => {
-    console.log(Id)
-    console.log(game)
-
-    document.getElementById('games').innerText = game
-    document.getElementById('btnInput').disabled = true
-    document.getElementById('btnEdit').disabled = false
-
-}
-
-
 // HANDLE REGISTER
 const handleRegister = async () => {
     let regUsername = document.getElementById('regUsername').value
@@ -120,6 +108,42 @@ const handleInput  = async (UsergameId) => {
         alert('INPUT DATA FAILED')
     }
 }
+
+// HANDLE EDIT HISTORY
+const handleEditH = (id) => {
+    const edit = document.getElementById(id)
+    console.log(edit)
+    console.log(edit.children[2].innerHTML)
+    document.getElementById("games").value = edit.children[2].innerHTML
+    document.getElementById("scores").value = edit.children[3].innerHTML
+    document.getElementById("ranks").value = edit.children[4].innerHTML
+
+    document.getElementById('btnInput').disabled = true
+    document.getElementById('btnEdit').disabled = false
+    document.getElementById("btnEdit").setAttribute('onclick', `handleSubmitEdit(${id})`)
+
+}
+
+// HANDLE AFTER EDIT HISTORY
+const handleSubmitEdit = async (id) => {
+    let inputGame = document.getElementById("games")
+    let inputScore = document.getElementById("scores")
+    let inputRank = document.getElementById("ranks")
+  
+    const resp = await fetch(`http://localhost:6060/history/${id}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type':'application/json'
+        },
+        body: JSON.stringify({
+            game: inputGame.value,
+            score: inputScore.value,
+            rank: inputRank.value
+        })
+    })
+
+    location.reload()
+  }
 
 
 //HANDLE FIND USERNAME
