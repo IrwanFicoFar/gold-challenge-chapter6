@@ -1,0 +1,16 @@
+{
+    "username": "irwan",
+    "fullname": "irwan hadi",
+    "address": "jakarta",
+    "age": "28",
+    "hobby": "coding"
+}
+
+
+{
+      "username": "irwan",
+      "fullname": "irwan hadi",
+      "address": "jakarta",
+      "job": "karyawan",
+      "age": "28"
+}
