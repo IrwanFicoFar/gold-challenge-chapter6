@@ -14,29 +14,42 @@
         <div class="col detail-cover">
             <div class="row ">
                 <div class="col form1">
-                    <h2>HISTORIES OF <%= data.username.toUpperCase() %> </h2>
+                    <h2>GAME HISTORIES OF <%= data.username.toUpperCase() %> </h2>
                     <div class="form-group">
                         <label></label>
-                        <input class="form-control" placeholder="Username" id="input-history">
+                        <input class="form-control" placeholder="Enter Games" id="games">
+                        <label></label>
+                        <input class="form-control" placeholder="Enter Scores (Integer)" id="scores">
+                        <label></label>
+                        <input class="form-control" placeholder="Enter Rank" id="ranks">
                     </div>
-                    <button type="submit" class="btn btn-primary button mb-4" onclick=handleInput(<%= data.id %>)>SUBMIT HISTORY</button>
-                    <label></label>
-                    
+                    <button type="submit" id="btnInput" class="btn btn-primary button mb-4" onclick=handleInput(<%= data.id %>)>SUBMIT HISTORY</button>
+                    <button type="submit" id="btnEdit" class="btn btn-warning button mb-4" onclick=handleInput(<%= data.id %>)>SUBMIT EDIT</button>
+
+                    <label></label>                    
                     <table class="table">
                         <thead class="thead-dark">
                           <tr>
                             <th scope="col">NO</th>
-                            <th scope="col">HISTORIES</th>
+                            <th scope="col">ID</th>
+                            <th scope="col">GAMES</th>
+                            <th scope="col">SCORES</th>
+                            <th scope="col">RANKS</th>
                             <th scope="col">EDIT</th>
-                            <th scope="col">DELET</th>
+                            <th scope="col">DELETE</th>
                           </tr>
                         </thead>
-                        <tbody>
+                        <tbody>                  
                            
                             <% for( let index = 0; index < data.UsergameHistories.length; index++ ) { %>
                                 <tr>
-                                  <th scope="row"><%= index + 1 %> </th>
-                                  <td><%= data.UsergameHistories[index].history.toUpperCase()%> </td>
+                                  <th scope="row"> <%= index + 1 %> </th>
+                                  <td><%= data.UsergameHistories[index].id%> </td> 
+                                  <td><%= data.UsergameHistories[index].game%> </td> 
+                                  <td><%= data.UsergameHistories[index].score%> </td> 
+                                  <td><%= data.UsergameHistories[index].rank%> </td>                                                            
+                                  <td><button type="submit" class="btn btn-success button " onclick=handleEditH(<%=data.UsergameHistories[index].game%>)>EDIT</button></td>
+                                  <td><button type="submit" class="btn btn-danger" onclick=handleDeleteH(<%=data.UsergameHistories[index].id%>)>DELETE</button></td>
                                 </tr> 
                             <% } %>
 
@@ -46,10 +59,10 @@
                 </div>    
             </div>
             <div class="row">
-                <div class="col-md-3 offset-3 button2">
+                <div class="col-md-3 offset-3 history-button">
                     <button type="submit" class="btn btn-info button" onclick="dashboard()">GO TO DASHBOARD</button>
                 </div>
-                <div class="col-md-3 button2">
+                <div class="col-md-3 history-button">
                     <button type="submit" class="btn btn-info button" onclick="listData()">GO TO LIST DATA</button>
                 </div>
             </div>
